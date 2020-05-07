@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>992380059890-kapuisv9eutme8fqiprechc1hjb61ves.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.992380059890-kapuisv9eutme8fqiprechc1hjb61ves</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCEWk_sId4REdDvjlTau-6xzJrK8iDuyqg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>992380059890</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.taghavi.mytask</string>
+	<key>PROJECT_ID</key>
+	<string>authentication-demo-88c63</string>
+	<key>STORAGE_BUCKET</key>
+	<string>authentication-demo-88c63.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:992380059890:ios:99188a4264c098e6ab506b</string>
+	<key>DATABASE_URL</key>
+	<string>https://authentication-demo-88c63.firebaseio.com</string>
+</dict>
+</plist>
