@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "992380059890",
+    "firebase_url": "https://authentication-demo-88c63.firebaseio.com",
+    "project_id": "authentication-demo-88c63",
+    "storage_bucket": "authentication-demo-88c63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992380059890:android:689d9fb292db37b1ab506b",
+        "android_client_info": {
+          "package_name": "com.taghavi.mytask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "992380059890-qlrfo07kg3qvl6cerdinc8lestitclvt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.taghavi.mytask",
+            "certificate_hash": "8ef3cbdf8396510dfc6e6cc0e30aba0341d71704"
+          }
+        },
+        {
+          "client_id": "992380059890-i97i582no95ph56ko2qomdmv7re2ctqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBmmWIsCAMjFXrzB20mV13I5q2svjtW7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "992380059890-i97i582no95ph56ko2qomdmv7re2ctqg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "992380059890-kapuisv9eutme8fqiprechc1hjb61ves.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.taghavi.mytask"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
