@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mytask/config/config.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -78,6 +79,28 @@ class LoginScreen extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
+              ),
+            ),
+            FlatButton(
+              onPressed: () {},
+              child: Text("Signup using Email"),
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                top: 30,
+              ),
+              child: Wrap(
+                children: <Widget>[
+                  FlatButton.icon(
+                    onPressed: () {},
+                    icon: Icon(FontAwesomeIcons.google),
+                    label: Text("Sign-In using Gmail"),
+                  ),
+                  FlatButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.phone),
+                      label: Text("Sign-In using Phone"))
+                ],
               ),
             )
           ],
