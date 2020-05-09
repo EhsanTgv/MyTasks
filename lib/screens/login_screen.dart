@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mytask/config/config.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -38,7 +39,7 @@ class LoginScreen extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: "Email",
-                    hintText: "Write an Email here"),
+                    hintText: "Write your Email here"),
                 keyboardType: TextInputType.emailAddress,
               ),
             ),
@@ -53,6 +54,32 @@ class LoginScreen extends StatelessWidget {
                 obscureText: true,
               ),
             ),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [primaryColor, secondaryColor],
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.symmetric(
+                  horizontal: 30,
+                  vertical: 20,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 30,
+                  vertical: 20,
+                ),
+                child: Center(
+                  child: Text(
+                    "Login With Email",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
