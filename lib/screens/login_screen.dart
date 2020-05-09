@@ -23,7 +23,14 @@ class LoginScreen extends StatelessWidget {
                 width: 200,
                 height: 200,
               ),
-            )
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+              child: Text(
+                "Login",
+                style: TextStyle(fontSize: 30),
+              ),
+            ),
           ],
         ),
       ),
