@@ -3,6 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mytask/config/config.dart';
 
 class LoginScreen extends StatelessWidget {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -37,6 +40,7 @@ class LoginScreen extends StatelessWidget {
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.only(top: 40),
               child: TextField(
+                controller: _emailController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: "Email",
@@ -48,6 +52,7 @@ class LoginScreen extends StatelessWidget {
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.only(top: 10),
               child: TextField(
+                controller: _passwordController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: "Password",
