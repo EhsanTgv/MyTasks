@@ -21,10 +21,29 @@ class _LoginScreenState extends State<LoginScreen> {
     if (email.isNotEmpty && password.isNotEmpty) {
       _auth
           .signInWithEmailAndPassword(email: email, password: password)
-          .then((user) {})
-          .catchError((error) {});
-    } else {
-      showDialog(
+          .then((user) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              title: Text("Done"),
+              content: Text("Sign in success"),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }).catchError((error) {
+        showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
@@ -32,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.circular(16),
               ),
               title: Text("Error"),
-              content: Text("Please provide email & password"),
+              content: Text(error.toString()),
               actions: <Widget>[
                 FlatButton(
                   child: Text("Cancel"),
@@ -40,15 +59,38 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.of(context).pop();
                   },
                 ),
-                FlatButton(
-                  child: Text("OK"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                )
               ],
             );
-          });
+          },
+        );
+      });
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            title: Text("Error"),
+            content: Text("Please provide email & password"),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Cancel"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              FlatButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        },
+      );
     }
   }
 
