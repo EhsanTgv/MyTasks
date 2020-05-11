@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mytask/config/config.dart';
 
@@ -10,13 +11,19 @@ class _EmailPassSignupScreenState extends State<EmailPassSignupScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   void _signUp() {
     String email = _emailController.text.trim();
     String password = _passwordController.text;
 
-        if (email.isNotEmpty && password.isNotEmpty) {
-        }else{
-          showDialog(
+    if (email.isNotEmpty && password.isNotEmpty) {
+      _auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((user) {})
+          .catchError((error) {});
+    } else {
+      showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
@@ -42,7 +49,7 @@ class _EmailPassSignupScreenState extends State<EmailPassSignupScreen> {
           );
         },
       );
-        }
+    }
   }
 
   @override
