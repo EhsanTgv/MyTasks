@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mytask/config/config.dart';
 
 class EmailPassSignupScreen extends StatefulWidget {
   @override
@@ -6,8 +7,70 @@ class EmailPassSignupScreen extends StatefulWidget {
 }
 
 class _EmailPassSignupScreenState extends State<EmailPassSignupScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Email Sign Up"),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.only(top: 40),
+              child: TextField(
+                controller: _emailController,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Email",
+                    hintText: "Write your Email here"),
+                keyboardType: TextInputType.emailAddress,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.only(top: 10),
+              child: TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Password",
+                    hintText: "Write your password here"),
+                obscureText: true,
+              ),
+            ),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [primaryColor, secondaryColor],
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.symmetric(
+                  horizontal: 30,
+                  vertical: 20,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 30,
+                  vertical: 20,
+                ),
+                child: Center(
+                  child: Text(
+                    "Sign Up Using Email",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
