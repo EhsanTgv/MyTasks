@@ -9,6 +9,42 @@ class EmailPassSignupScreen extends StatefulWidget {
 class _EmailPassSignupScreenState extends State<EmailPassSignupScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  void _signUp() {
+    String email = _emailController.text.trim();
+    String password = _passwordController.text;
+
+        if (email.isNotEmpty && password.isNotEmpty) {
+        }else{
+          showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            title: Text("Error"),
+            content: Text("Please provide email & password"),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Cancel"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              FlatButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        },
+      );
+        }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +79,9 @@ class _EmailPassSignupScreenState extends State<EmailPassSignupScreen> {
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                _signUp();
+              },
               child: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
