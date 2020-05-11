@@ -20,8 +20,50 @@ class _EmailPassSignupScreenState extends State<EmailPassSignupScreen> {
     if (email.isNotEmpty && password.isNotEmpty) {
       _auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((user) {})
-          .catchError((error) {});
+          .then((user) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              title: Text("Success"),
+              content: Text("Sign Up process is done, now you can sign in"),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          },
+        );
+      }).catchError((error) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              title: Text("Error"),
+              content: Text(error.message.toString()),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          },
+        );
+      });
     } else {
       showDialog(
         context: context,
