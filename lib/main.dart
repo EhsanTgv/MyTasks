@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mytask/config/config.dart';
 import 'package:mytask/screens/login_screen.dart';
 
 void main() {
@@ -11,6 +12,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomePage(),
+      theme: ThemeData(
+        primaryColor: primaryColor,
+        brightness: Brightness.light,
+      ),
+      darkTheme: ThemeData(
+        primaryColor: primaryColor,
+        brightness: Brightness.dark,
+      ),
     );
   }
 }
