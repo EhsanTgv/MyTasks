@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mytask/config/config.dart';
 import 'package:mytask/screens/email_pass_signup.dart';
+import 'package:mytask/screens/phone_signin_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -239,7 +240,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     label: Text("Sign-In using Gmail"),
                   ),
                   FlatButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PhoneSignInScreen()));
+                      },
                       icon: Icon(Icons.phone),
                       label: Text("Sign-In using Phone"))
                 ],
