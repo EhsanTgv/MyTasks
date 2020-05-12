@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mytask/config/config.dart';
 import 'package:mytask/screens/email_pass_signup.dart';
 
@@ -14,6 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   void _signIn() async {
     String email = _emailController.text.trim();
@@ -93,6 +95,20 @@ class _LoginScreenState extends State<LoginScreen> {
         },
       );
     }
+  }
+
+  void _signInUsingGoogle() async {
+    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+
+    final AuthCredential credential = GoogleAuthProvider.getCredential(
+        idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
+
+    final FirebaseUser user =
+        (await _auth.signInWithCredential(credential)).user;
+
+    print("signed in ${user.displayName}");
   }
 
   @override
