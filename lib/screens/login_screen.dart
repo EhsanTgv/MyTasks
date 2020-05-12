@@ -98,17 +98,40 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _signInUsingGoogle() async {
-    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
+    try {
+      final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
-        idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
+      final AuthCredential credential = GoogleAuthProvider.getCredential(
+          idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
 
-    final FirebaseUser user =
-        (await _auth.signInWithCredential(credential)).user;
+      final FirebaseUser user =
+          (await _auth.signInWithCredential(credential)).user;
 
-    print("signed in ${user.displayName}");
+      print("signed in ${user.displayName}");
+    } catch (error) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            title: Text("Error"),
+            content: Text(error.message.toString()),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Cancel"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -209,7 +232,9 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Wrap(
                 children: <Widget>[
                   FlatButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      _signInUsingGoogle();
+                    },
                     icon: Icon(FontAwesomeIcons.google),
                     label: Text("Sign-In using Gmail"),
                   ),
