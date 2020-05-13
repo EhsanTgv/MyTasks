@@ -60,6 +60,11 @@ class _PhoneSignInScreenState extends State<PhoneSignInScreen> {
         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
   }
 
+  void _signInWithPhone() async {
+    final AuthCredential credential = PhoneAuthProvider.getCredential(
+        verificationId: _verificationId, smsCode: _smsController.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
