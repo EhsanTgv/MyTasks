@@ -75,6 +75,7 @@ class _PhoneSignInScreenState extends State<PhoneSignInScreen> {
       } else {
         _message = "Sign in faild";
       }
+      print(_message);
     });
   }
 
@@ -148,7 +149,9 @@ class _PhoneSignInScreenState extends State<PhoneSignInScreen> {
                       ),
                     )
                   : InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        _signInWithPhone();
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
