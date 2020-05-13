@@ -20,6 +20,20 @@ class _PhoneSignInScreenState extends State<PhoneSignInScreen> {
 
   final TextEditingController _smsController = TextEditingController();
 
+  void _verifyPhoneNumber() async {
+    setState(() {
+      _message = "";
+    });
+
+    final PhoneVerificationCompleted verificationCompleted =
+        (AuthCredential phoneAuthCrendential) {
+      _auth.signInWithCredential(phoneAuthCrendential);
+      setState(() {
+        _message = "Received phone auth crendential: $phoneAuthCrendential";
+      });
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +60,7 @@ class _PhoneSignInScreenState extends State<PhoneSignInScreen> {
                   ? Container(
                       margin: EdgeInsets.all(10),
                       child: TextField(
+                        controller: _smsController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           hintText: "OTP here",
@@ -62,6 +77,7 @@ class _PhoneSignInScreenState extends State<PhoneSignInScreen> {
                         setState(() {
                           _isSMSsent = true;
                         });
+                        _verifyPhoneNumber();
                       },
                       child: Container(
                         decoration: BoxDecoration(
