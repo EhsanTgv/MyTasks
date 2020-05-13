@@ -32,6 +32,14 @@ class _PhoneSignInScreenState extends State<PhoneSignInScreen> {
         _message = "Received phone auth crendential: $phoneAuthCrendential";
       });
     };
+
+    final PhoneVerificationFailed verificationFailed =
+        (AuthException authException) {
+      setState(() {
+        _message =
+            "Phone number verification failed, code ${authException.code}. Message: ${authException.message}";
+      });
+    };
   }
 
   @override
