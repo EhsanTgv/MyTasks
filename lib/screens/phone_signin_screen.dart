@@ -40,6 +40,24 @@ class _PhoneSignInScreenState extends State<PhoneSignInScreen> {
             "Phone number verification failed, code ${authException.code}. Message: ${authException.message}";
       });
     };
+
+    final PhoneCodeSent codeSent =
+        (String verificationId, [int forceResendingToken]) async {
+      _verificationId = verificationId;
+    };
+
+    final PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
+        (String verificationId) {
+      _verificationId = verificationId;
+    };
+
+    await _auth.verifyPhoneNumber(
+        phoneNumber: _phoneNumber.phoneNumber,
+        timeout: const Duration(seconds: 120),
+        verificationCompleted: verificationCompleted,
+        verificationFailed: verificationFailed,
+        codeSent: codeSent,
+        codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
   }
 
   @override
