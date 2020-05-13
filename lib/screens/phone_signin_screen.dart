@@ -63,6 +63,19 @@ class _PhoneSignInScreenState extends State<PhoneSignInScreen> {
   void _signInWithPhone() async {
     final AuthCredential credential = PhoneAuthProvider.getCredential(
         verificationId: _verificationId, smsCode: _smsController.text);
+
+    final FirebaseUser user =
+        (await _auth.signInWithCredential(credential)).user;
+    final FirebaseUser currentUser = await _auth.currentUser();
+    assert(user.uid == currentUser.uid);
+
+    setState(() {
+      if (user != null) {
+        _message = "Successfully signed in, uid: ${user.uid}";
+      } else {
+        _message = "Sign in faild";
+      }
+    });
   }
 
   @override
