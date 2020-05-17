@@ -29,10 +29,15 @@ class _LoginScreenState extends State<LoginScreen> {
           .signInWithEmailAndPassword(email: email, password: password)
           .then((user) {
         if (user != null) {
-          _db
-              .collection("users")
-              .document(user.user.uid)
-              .setData({"email": _emailController, "lastSeen": DateTime.now()});
+          _db.collection("users").document(user.user.uid).setData(
+            {
+              "displayName": user.user.displayName,
+              "email": user.user.email,
+              "photoUrl": user.user.photoUrl,
+              "lastSeen": DateTime.now(),
+              "signin_method": user.user.providerId,
+            },
+          );
         }
         showDialog(
           context: context,
