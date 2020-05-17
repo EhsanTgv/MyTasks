@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -17,6 +18,8 @@ class _PhoneSignInScreenState extends State<PhoneSignInScreen> {
   bool _isSMSsent = false;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  final Firestore _db = Firestore.instance;
 
   final TextEditingController _smsController = TextEditingController();
 
@@ -71,6 +74,17 @@ class _PhoneSignInScreenState extends State<PhoneSignInScreen> {
 
     setState(() {
       if (user != null) {
+        
+        _db.collection("users").document(user.uid).setData(
+          {
+            "displayName": user.displayName,
+            "email": user.email,
+            "photoUrl": user.photoUrl,
+            "lastSeen": DateTime.now(),
+            "signin_method": user.providerId,
+          },
+        );
+
         _message = "Successfully signed in, uid: ${user.uid}";
       } else {
         _message = "Sign in faild";
