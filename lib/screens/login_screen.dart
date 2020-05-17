@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final Firestore _db = Firestore.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   void _signIn() async {
@@ -26,6 +28,12 @@ class _LoginScreenState extends State<LoginScreen> {
       _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((user) {
+        if (user != null) {
+          _db
+              .collection("users")
+              .document(user.user.uid)
+              .setData({"email": _emailController, "lastSeen": DateTime.now()});
+        }
         showDialog(
           context: context,
           builder: (context) {
