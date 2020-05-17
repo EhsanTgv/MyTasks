@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mytask/config/config.dart';
@@ -13,6 +14,8 @@ class _EmailPassSignupScreenState extends State<EmailPassSignupScreen> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  final Firestore _db = Firestore.instance;
+
   void _signUp() {
     String email = _emailController.text.trim();
     String password = _passwordController.text;
@@ -21,6 +24,10 @@ class _EmailPassSignupScreenState extends State<EmailPassSignupScreen> {
       _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((user) {
+        _db
+            .collection("users")
+            .document(user.user.uid)
+            .setData({"email": _emailController, "lastSeen": DateTime.now()});
         showDialog(
           context: context,
           builder: (context) {
